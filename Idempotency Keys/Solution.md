@@ -1,4 +1,4 @@
-****Solution****: Idempotent Payments Processor
+**Solution**: Idempotent Payments Processor
 This solution implements a concurrency-safe and fault-tolerant IdempotentProcessor in Python, designed to ensure "exactly-once" execution of critical actions, such as payment charging, using a unique idempotency key.
 
 The core design focuses on separating Storage from Processing Logic and uses a combination of in-memory locks and a cache layer to handle both long-term result consistency and short-term concurrent access protection.
@@ -10,8 +10,9 @@ The solution is structured around two main components to meet the system require
 *   **IdempotentProcessor (Core Logic):** Manages the execution flow, handles concurrency using locks, enforces the Time-to-Live (TTL) expiry, and provides observability.
 **Diagrams**
 
-![IdempotentProcessor Flowchart](./flowchart.png)
+![IdempotentProcessor Flowchart](./Flowchart.png)
 *Figure: Flowchart illustrating the step-by-step execution and concurrency control in the IdempotentProcessor.*
+
 
 ![System Architecture](./SYS.png)
 *Figure: High-level architecture.*
