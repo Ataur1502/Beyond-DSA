@@ -1,4 +1,4 @@
-**Problem 2 — Idempotent Payments API (Guaranteed-Once Execution in Distributed Systems)**
+# Problem 2 — Idempotent Payments API (Guaranteed-Once Execution in Distributed Systems) 
 
 **Context:**
 In large-scale payment systems, network retries, load balancers, and multi-region deployments can cause the same request to hit the backend multiple times. A simple “if seen before, skip execution” logic isn’t enough — because duplicate requests can arrive simultaneously on different servers, possibly before the first one completes.
@@ -9,18 +9,18 @@ You are tasked with designing an Idempotent Payments Processor that guarantees a
 
 ---
 
-**Problem Description:**
+## Problem Description:
 Implement a fault-tolerant **IdempotentProcessor** that coordinates between concurrent and repeated calls using the same idempotency key. It should behave predictably under timing races, handle failures gracefully, and avoid duplicate side effects (e.g., charging a card twice).
 
 Implement the method:
 
-```
+```python
 process(idempotency_key: str, action_callable: Callable, *args, **kwargs) -> Any
 ```
 
 ---
 
-**System Requirements:**
+## System Requirements:
 
 1.  **Single Execution Guarantee:**
     *   If multiple identical requests (same key) are received simultaneously, only one should execute `action_callable`.
@@ -46,7 +46,7 @@ process(idempotency_key: str, action_callable: Callable, *args, **kwargs) -> Any
 
 ---
 
-**Example Flow:**
+## Example Flow:
 
 | Time    | Request                        | Action               | Expected Behavior                   |
 | :------ | :----------------------------- | :------------------- | :---------------------------------- |
@@ -57,7 +57,7 @@ process(idempotency_key: str, action_callable: Callable, *args, **kwargs) -> Any
 
 ---
 
-**Learning Focus:**
+## Learning Focus:
 
 *   Achieving exactly-once semantics in distributed payment APIs.
 *   Building concurrency-safe systems using locks and futures.
