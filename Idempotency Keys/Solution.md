@@ -3,6 +3,25 @@ This solution implements a concurrency-safe and fault-tolerant IdempotentProcess
 
 The core design focuses on separating Storage from Processing Logic and uses a combination of in-memory locks and a cache layer to handle both long-term result consistency and short-term concurrent access protection.
 
+**HTTP Methods and Idempotency**
+
+Idempotency is a key concept in HTTP APIs, ensuring that repeated requests have the same effect as a single request. The following diagram illustrates which HTTP methods are typically idempotent:
+
+
+| HTTP Method | Idempotent | Description                                                                 |
+| :---------- | :--------- | :-------------------------------------------------------------------------- |
+| GET         | Yes        | Safe and idempotent; retrieves data without modifying server state.          |
+| PUT         | Yes        | Idempotent; replaces resource at the target URI with the request payload.    |
+| DELETE      | Yes        | Idempotent; removes the resource, repeated calls have the same effect.       |
+| HEAD        | Yes        | Safe and idempotent; retrieves headers without modifying server state.       |
+| OPTIONS     | Yes        | Safe and idempotent; describes communication options for the target resource.|
+| POST        | No         | Not idempotent by default; creates resources or triggers actions.            |
+| PATCH       | No         | Not guaranteed idempotent; partially modifies a resource.                    |
+
+**Note:**  
+While GET, PUT, DELETE, HEAD, and OPTIONS are designed to be idempotent, POST and PATCH are not inherently idempotent. For critical operations like payments, idempotency keys are often used with POST to enforce "exactly-once" semantics.
+
+
 **I. Architecture and Design Principles**
 The solution is structured around two main components to meet the system requirements:
 
