@@ -1,4 +1,4 @@
-# Problem 2 — Idempotent Payments API (Guaranteed-Once Execution in Distributed Systems)
+# Problem 2 — Idempotent Payments API (Guaranteed-Once Execution in Distributed Systems) 
 
 **Context:**
 In large-scale payment systems, network retries, load balancers, and multi-region deployments can cause the same request to hit the backend multiple times. A simple “if seen before, skip execution” logic isn’t enough — because duplicate requests can arrive simultaneously on different servers, possibly before the first one completes.
